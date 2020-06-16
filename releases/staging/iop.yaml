@@ -11,9 +11,9 @@
     chart:
       # TODO(SamuAlfageme):
       # Replace with HelmRelease.sepc.{repository, name, version}
-      git: https://github.com/sciencemesh/charts.git
+      git: https://github.com/SamuAlfageme/sciencemeshcharts.git
       path: iop
-      ref: init_flux
+      ref: iop_ingress
     values:
       revad:
         image:
