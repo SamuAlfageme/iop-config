@@ -17,10 +17,13 @@
     values:
       revad:
         configFiles:
+          # Standalone https://raw.githubusercontent.com/cs3org/reva/master/examples/standalone/standalone.toml
           revad.toml: |
             [grpc.services.gateway]
+            datagateway = "https://sciencemesh.cernbox.cern.ch/iop/datagateway"
             [grpc.services.storageregistry]
             [grpc.services.storageprovider]
+            data_server_url = "https://sciencemesh.cernbox.cern.ch/iop/data"
             [grpc.services.authprovider]
             [grpc.services.authregistry]
             [grpc.services.userprovider]
@@ -34,7 +37,7 @@
             [http.services.dataprovider]
             [http.services.prometheus]
             [http.services.ocmd]
-          # Users https://raw.githubusercontent.com/cs3org/reva/b208f4df729be30a8b03fbbe7f9848e614e2015f/examples/ocm-partners/users-cern.json
+          # Users https://raw.githubusercontent.com/cs3org/reva/master/examples/ocm-partners/users-cern.json
           users.json: |
             [
               {
@@ -71,44 +74,146 @@
                 "groups": ["quantum-lovers", "philosophy-haters", "physics-lovers"]
               }
             ]
-          # Providers https://raw.githubusercontent.com/cs3org/reva/b208f4df729be30a8b03fbbe7f9848e614e2015f/examples/ocm-partners/providers.demo.json
+          # Providers https://raw.githubusercontent.com/cs3org/reva/master/examples/ocm-partners/providers.demo.json
           providers.json: |
             [
               {
+                "name": "cernbox",
+                "full_name": "CERNBox",
+                "organization": "CERN",
                 "domain": "https://cern.ch",
-                "api_version": "0.0.1",
-                "api_endpoint": "https://sciencemesh.cernbox.cern.ch/ocm/",
-                "webdav_endpoint": "https://sciencemesh.cernbox.cern.ch/webdav/"
+                "homepage": "https://cernbox.web.cern.ch",
+                "description": "CERNBox provides cloud data storage to all CERN users.",
+                "services": [
+                  {
+                    "endpoint": {
+                      "type": {
+                        "name": "OCM",
+                        "description": "CERNBox Open Cloud Mesh API"
+                      },
+                      "name": "CERNBox - OCM API",
+                      "path": "https://sciencemesh.cernbox.cern.ch/iop/ocm/",
+                      "isMonitored": true
+                    },
+                    "api_version": "0.0.1",
+                    "host": "https://sciencemesh.cernbox.cern.ch/iop/"
+                  }
+                ]
               },
               {
+                "name": "oc-cesnet",
+                "full_name": "ownCloud@CESNET",
+                "organization": "CESNET",
                 "domain": "https://cesnet.cz",
-                "api_version": "0.0.1",
-                "api_endpoint": "https://sciencemesh.cesnet.cz/ocm/",
-                "webdav_endpoint": "https://sciencemesh.cesnet.cz/webdav/"
+                "homepage": "https://owncloud.cesnet.cz",
+                "description": "OwnCloud has been designed for individual users.",
+                "services": [
+                  {
+                    "endpoint": {
+                      "type": {
+                        "name": "OCM",
+                        "description": "CESNET Open Cloud Mesh API"
+                      },
+                      "name": "CESNET - OCM API",
+                      "path": "https://sciencemesh.cesnet.cz/iop/ocm/",
+                      "isMonitored": true
+                    },
+                    "api_version": "0.0.1",
+                    "host": "https://sciencemesh.cesnet.cz/iop/"
+                  }
+                ]
               },
               {
+                "name": "uni-muenster",
+                "full_name": "WWU University of Muenster",
+                "organization": "University of Muenster",
                 "domain": "https://uni-muenster.de",
-                "api_version": "0.0.1",
-                "api_endpoint": "https://sciencemesh-test.uni-muenster.de/ocm/",
-                "webdav_endpoint": "https://sciencemesh-test.uni-muenster.de/webdav/"
+                "homepage": "https://uni-muenster.de",
+                "description": "WWU provides cloud storage to its students, faculty and researchers.",
+                "services": [
+                  {
+                    "endpoint": {
+                      "type": {
+                        "name": "OCM",
+                        "description": "WWU Open Cloud Mesh API"
+                      },
+                      "name": "WWU - OCM API",
+                      "path": "https://sciencemesh-test.uni-muenster.de/api/ocm/",
+                      "isMonitored": true
+                    },
+                    "api_version": "0.0.1",
+                    "host": "https://sciencemesh-test.uni-muenster.de/api/"
+                  }
+                ]
               },
               {
+                "name": "cubbit",
+                "full_name": "Cubbit",
+                "organization": "Cubbit",
                 "domain": "https://cubbit.io",
-                "api_version": "0.0.1",
-                "api_endpoint": "https://ocm.cubbit.io/ocm/",
-                "webdav_endpoint": "https://ocm.cubbit.io/webdav/"
+                "homepage": "https://cubbit.io",
+                "description": "Cubbit provides distributed storage over a P2P network.",
+                "services": [
+                  {
+                    "endpoint": {
+                      "type": {
+                        "name": "OCM",
+                        "description": "Cubbit Open Cloud Mesh API"
+                      },
+                      "name": "Cubbit - OCM API",
+                      "path": "https://sciencemesh.cubbit.io/ocm/",
+                      "isMonitored": true
+                    },
+                    "api_version": "0.0.1",
+                    "host": "https://sciencemesh.cubbit.io/"
+                  }
+                ]
               },
               {
+                "name": "ailleron",
+                "full_name": "Ailleron - Software Mind",
+                "organization": "Ailleron",
                 "domain": "https://ailleron.com",
-                "api_version": "0.0.1",
-                "api_endpoint": "http://cs3mesh.softwaremind.com:19000/ocm/",
-                "webdav_endpoint": "http://cs3mesh.softwaremind.com:19000/webdav/"
+                "homepage": "https://ailleron.com",
+                "description": "Ailleron is a Polish IT company providing software and storage solutions to its clients.",
+                "services": [
+                  {
+                    "endpoint": {
+                      "type": {
+                        "name": "OCM",
+                        "description": "Ailleron Open Cloud Mesh API"
+                      },
+                      "name": "Ailleron - OCM API",
+                      "path": "https://cs3mesh.softwaremind.com/iop/ocm/",
+                      "isMonitored": true
+                    },
+                    "api_version": "0.0.1",
+                    "host": "https://cs3mesh.softwaremind.com/iop/"
+                  }
+                ]
               },
               {
+                "name": "surfsara",
+                "full_name": "Surfsara",
+                "organization": "Surfsara",
                 "domain": "https://surfsara.nl",
-                "api_version": "0.0.1",
-                "api_endpoint": "https://app.cs3mesh-iop.k8s.surfsara.nl/ocm/",
-                "webdav_endpoint": "https://app.cs3mesh-iop.k8s.surfsara.nl/webdav/"
+                "homepage": "https://surfsara.nl",
+                "description": "OwnCloud has been designed for individual users.",
+                "services": [
+                  {
+                    "endpoint": {
+                      "type": {
+                        "name": "OCM",
+                        "description": "Surfsara Open Cloud Mesh API"
+                      },
+                      "name": "Surfsara - OCM API",
+                      "path": "https://app.cs3mesh-iop.k8s.surfsara.nl/iop/ocm/",
+                      "isMonitored": true
+                    },
+                    "api_version": "0.0.1",
+                    "host": "https://app.cs3mesh-iop.k8s.surfsara.nl/iop/"
+                  }
+                ]
               }
             ]
       ingress:

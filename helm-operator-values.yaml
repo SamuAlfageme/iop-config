@@ -13,3 +13,5 @@ rbac:
   create: true
 git:
   pollInterval: 5m
+helm:
+  versions: "v2"
