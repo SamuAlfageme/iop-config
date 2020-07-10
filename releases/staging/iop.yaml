@@ -75,7 +75,7 @@
               }
             ]
           # Providers https://raw.githubusercontent.com/cs3org/reva/master/examples/ocm-partners/providers.demo.json
-          providers.json: |
+          ocm-providers.json: |
             [
               {
                 "name": "cernbox",
