@@ -64,6 +64,17 @@
               },
               {
                 "id": {
+                  "opaque_id": "diogocas",
+                  "idp": "https://cern.ch"
+                },
+                "username": "diogo",
+                "secret": "diogopass",
+                "mail": "diogo@cern.ch",
+                "display_name": "Diogo",
+                "groups": ["radium-lovers", "polonium-lovers", "physics-lovers"]
+              },
+              {
+                "id": {
                   "opaque_id": "samuel9876",
                   "idp": "https://cern.ch"
                 },
